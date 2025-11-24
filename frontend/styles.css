@@ -1,0 +1,557 @@
+/* ======================================
+   FONTES
+====================================== */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap");
+
+/* ======================================
+   ROOT / VARIÁVEIS
+====================================== */
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-heading: "Barlow Condensed", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --bg-dark-main: #0a0a14;
+  --bg-dark-grad-1: #15152a;
+  --bg-dark-grad-2: #0a0a14;
+  --bg-dark-surface: #131321;
+
+  --text-dark-main: #f0eef5;
+  --text-dark-muted: #a5a1bb;
+
+  --bg-light-main: #f5edde;
+  --bg-light-surface: #ffffff;
+  --text-light-main: #3a342e;
+  --text-light-muted: #82776f;
+
+  --neon-cyan: #22d3ee;
+  --neon-blue: #2563eb;
+  --neon-magenta: #e11d48;
+  --neon-green: #22c55e;
+  --neon-yellow: #facc15;
+  --neon-red: #ef4444;
+
+  --border-radius-xl: 18px;
+  --border-radius-lg: 14px;
+
+  --transition-fast: 150ms ease-out;
+}
+
+/* ======================================
+   THEME SWITCHING
+====================================== */
+body[data-theme="dark"] {
+  --bg-page: var(--bg-dark-main);
+  --bg-surface: var(--bg-dark-surface);
+  --text-main: var(--text-dark-main);
+  --text-muted: var(--text-dark-muted);
+
+  background:
+    radial-gradient(circle at 30% 20%, #15152a 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, #0d0d18 0%, transparent 55%),
+    #0a0a14;
+}
+
+body[data-theme="light"] {
+  --bg-page: var(--bg-light-main);
+  --bg-surface: var(--bg-light-surface);
+  --text-main: var(--text-light-main);
+  --text-muted: var(--text-light-muted);
+
+  background: linear-gradient(135deg, #f6e9d9, #f2dfc9);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  font-size: 16.5px;
+}
+
+/* ======================================
+   PAGE STRUCTURE
+====================================== */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+}
+
+.section-description {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  margin: 0 0 1.4rem;
+}
+
+/* ======================================
+   HEADER
+====================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(10, 10, 20, 0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+}
+
+body[data-theme="light"] .site-header {
+  background: rgba(255, 253, 244, 0.85);
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffe29f, #ff4d7d);
+  color: #150f0f;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 6px rgba(255, 140, 150, 0.4),
+    0 0 10px rgba(255, 200, 140, 0.4);
+}
+
+.logo-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.logo-subtitle {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--neon-yellow);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.theme-toggle {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.15rem 0.4rem;
+  width: 46px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ======================================
+   HERO
+====================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-kicker {
+  font-size: 0.75rem;
+  color: var(--neon-yellow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 4.2vw, 2.9rem);
+  margin: 0.4rem 0 1.1rem;
+  font-family: var(--font-heading);
+}
+
+.hero-description {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin: 0 0 1.6rem;
+}
+
+/* ======================================
+   BUTTONS
+====================================== */
+.btn {
+  padding: 0.7rem 1.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--neon-cyan);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.82rem;
+  transition: box-shadow 0.15s, background 0.15s, transform 0.15s,
+    border-color 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 0 10px rgba(34, 211, 238, 0.5),
+    0 0 18px rgba(34, 211, 238, 0.3);
+}
+
+.btn-secondary {
+  border-color: var(--neon-magenta);
+}
+
+/* ======================================
+   RAINBOW STRIP
+====================================== */
+.rainbow-strip {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--neon-red),
+    var(--neon-yellow),
+    var(--neon-green),
+    var(--neon-cyan)
+  );
+  margin: 2.2rem 0;
+  box-shadow: 0 0 10px rgba(255, 200, 100, 0.3);
+}
+
+/* ======================================
+   NEON CARDS
+====================================== */
+.neon-card {
+  border-radius: var(--border-radius-xl);
+  padding: 1px;
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+.neon-card::before {
+  display: none;
+}
+
+.neon-card__inner {
+  padding: 1.8rem 2rem;
+  border-radius: inherit;
+  background: var(--bg-surface);
+}
+
+.neon-card--cyan {
+  border: 1px solid var(--neon-cyan);
+  box-shadow:
+    0 0 10px rgba(34, 211, 238, 0.55),
+    0 0 20px rgba(34, 211, 238, 0.25);
+}
+
+.neon-card--blue {
+  border: 1px solid var(--neon-blue);
+  box-shadow:
+    0 0 10px rgba(37, 99, 235, 0.55),
+    0 0 20px rgba(37, 99, 235, 0.25);
+}
+
+.neon-card--magenta {
+  border: 1px solid var(--neon-magenta);
+  box-shadow:
+    0 0 10px rgba(225, 29, 72, 0.6),
+    0 0 20px rgba(225, 29, 72, 0.3);
+}
+
+.neon-card--green {
+  border: 1px solid var(--neon-green);
+  box-shadow:
+    0 0 10px rgba(34, 197, 94, 0.55),
+    0 0 20px rgba(34, 197, 94, 0.28);
+}
+
+.neon-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.12),
+    0 0 24px rgba(34, 211, 238, 0.18);
+}
+
+/* ======================================
+   FORM / INPUTS / TEXTOS
+====================================== */
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  margin: 0 0 0.6rem;
+}
+
+.card-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.2rem;
+}
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-row label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(18, 18, 30, 0.9);
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+
+body[data-theme="light"] input[type="text"],
+body[data-theme="light"] select {
+  background: #f3f1eb;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ======================================
+   SECTION GRID SPACING
+====================================== */
+.section-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  row-gap: 2.6rem;
+  column-gap: 1.8rem;
+  margin-top: 1.5rem;
+}
+
+/* ======================================
+   REPORT TABLE
+====================================== */
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.table-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(20, 20, 32, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 0.25rem;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.report-table th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  padding: 0.65rem 0.9rem;
+}
+
+.report-table td {
+  padding: 0.6rem 0.9rem;
+}
+
+.report-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ======================================
+   RESPONSIVO
+====================================== */
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .main-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding-inline: 1rem;
+  }
+
+  .site-footer {
+    text-align: left;
+  }
+}
+
+/* ======================================
+   AJUSTES FINOS – ENTRADA / SAÍDA / RELATÓRIO
+====================================== */
+
+.neon-card--blue .form-row input[type="text"],
+.neon-card--blue .form-row select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.neon-card--magenta .form-row input[type="text"],
+.neon-card--magenta .form-row input[type="number"],
+.neon-card--magenta .btn {
+  width: 280px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+
+.neon-card--magenta .neon-card__inner {
+  padding-top: 1.5rem;
+  padding-bottom: 1.3rem;
+}
+/* ===========================
+   TOAST / AVISOS
+=========================== */
+.toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  min-width: 260px;
+  max-width: 360px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0b1120;
+  background: #e5e7eb;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+  z-index: 999;
+}
+
+.toast--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.toast--success {
+  background: linear-gradient(135deg, #bbf7d0, #4ade80);
+  color: #052e16;
+}
+
+.toast--error {
+  background: linear-gradient(135deg, #fecaca, #ef4444);
+  color: #450a0a;
+}
+
+.toast--info {
+  background: linear-gradient(135deg, #e0f2fe, #38bdf8);
+  color: #082f49;
+}

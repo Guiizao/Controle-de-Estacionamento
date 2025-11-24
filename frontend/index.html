@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistema de Controle de Estacionamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body data-theme="dark">
+    <div class="scanline"></div>
+
+    <header class="site-header">
+      <div class="logo-area">
+        <div class="logo-mark">CEI</div>
+
+        <div class="logo-text">
+          <span class="logo-title">Controle de Estacionamento</span>
+          <span class="logo-subtitle">Inteligente</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#operacoes" class="nav-link">Operações</a>
+        <a href="#relatorio" class="nav-link">Relatório</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero section" id="topo">
+        <div class="hero-content">
+          <p class="hero-kicker">Gestão de vagas e faturamento</p>
+
+          <h1 class="hero-title">
+            Sistema de controle<br />
+            de estacionamento
+          </h1>
+
+          <p class="hero-description">
+            Registre entradas e saídas, calcule valores e acompanhe o
+            faturamento em tempo real, integrado ao ambiente local.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#operacoes" class="btn btn-primary">Registrar operação</a>
+            <a href="#relatorio" class="btn btn-secondary"
+              >Consultar relatório</a
+            >
+          </div>
+        </div>
+
+        <div class="hero-panel neon-card neon-card--cyan">
+          <div class="neon-card__inner">
+            <div class="hero-panel-header">
+              <span class="badge">Indicadores</span>
+              <span class="hero-panel-title">Visão geral do dia</span>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-label">Carros</span>
+                <span class="stat-value" id="stat-carros">--</span>
+              </div>
+
+              <div class="stat">
+                <span class="stat-label">Motos</span>
+                <span class="stat-value" id="stat-motos">--</span>
+              </div>
+
+              <div class="stat">
+                <span class="stat-label">Caminhões</span>
+                <span class="stat-value" id="stat-caminhoes">--</span>
+              </div>
+            </div>
+
+            <div class="hero-footer">
+              <span class="hero-footer-label">Faturamento total</span>
+              <span class="hero-footer-value" id="stat-total">R$ 0,00</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rainbow-strip"></div>
+
+      <section id="operacoes" class="section section-grid">
+        <header class="section-header">
+          <h2 class="section-title">Operações</h2>
+
+          <p class="section-description">
+            Utilize os formulários abaixo para registrar entrada e saída de
+            veículos.
+          </p>
+        </header>
+
+        <div class="section-content">
+          <article class="neon-card neon-card--blue">
+            <div class="neon-card__inner">
+              <h3 class="card-title">Registrar entrada</h3>
+
+              <p class="card-text">
+                Informe a placa e o tipo de veículo para abertura do registro.
+              </p>
+
+              <form id="form-entry" class="form">
+                <div class="form-row">
+                  <label for="entry-plate">Placa:</label>
+                  <input
+                    id="entry-plate"
+                    type="text"
+                    maxlength="10"
+                    placeholder="ABC1D23"
+                    required
+                  />
+                </div>
+
+                <div class="form-row">
+                  <label for="entry-type">Tipo de veículo:</label>
+                  <select id="entry-type" required>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                    <option value="caminhao">Caminhão</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-btn">
+                  Registrar entrada
+                </button>
+              </form>
+            </div>
+          </article>
+
+          <article class="neon-card neon-card--magenta">
+            <div class="neon-card__inner">
+              <h3 class="card-title">Registrar saída</h3>
+
+              <p class="card-text">
+                Informe a placa e o tempo de permanência (opcional) para cálculo
+                do valor.
+              </p>
+
+              <form id="form-exit" class="form">
+                <div class="form-row">
+                  <label for="exit-plate">Placa:</label>
+                  <input
+                    id="exit-plate"
+                    type="text"
+                    maxlength="10"
+                    placeholder="ABC1D23"
+                    required
+                  />
+                </div>
+
+                <div class="form-row">
+                  <label for="exit-hours">Horas:</label>
+                  <input
+                    id="exit-hours"
+                    type="number"
+                    min="1"
+                    inputmode="numeric"
+                    placeholder="Numero de horas:"
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-secondary form-btn">
+                  Registrar saída
+                </button>
+              </form>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+
+      <section id="relatorio" class="section">
+        <header class="section-header">
+          <h2 class="section-title">Relatório de uso e faturamento</h2>
+
+          <p class="section-description">
+            Visualize o consolidado por tipo de veículo.
+          </p>
+        </header>
+
+        <div class="neon-card neon-card--green">
+          <div class="neon-card__inner">
+            <div class="report-header">
+              <button id="btn-relatorio" type="button" class="btn btn-secondary">
+                Atualizar relatório
+              </button>
+
+              <span class="report-hint">
+                Última atualização:
+                <span id="report-last-update">nunca</span>
+              </span>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Tipo de veículo</th>
+                    <th>Total</th>
+                    <th>Faturamento</th>
+                  </tr>
+                </thead>
+
+                <tbody id="report-body">
+                  <tr>
+                    <td colspan="3" class="table-empty">
+                      Clique em “Atualizar relatório” para buscar os dados.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2025 · Sistema de Controle de Estacionamento</span>
+      <span>Ambiente de demonstração local</span>
+    </footer>
+
+    <script src="main.js" defer></script>
+    <div id="toast" class="toast"></div>
+  </body>
+</html>
