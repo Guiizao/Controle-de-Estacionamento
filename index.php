@@ -60,8 +60,8 @@ if ($action === 'entry') {
     try {
         $result = (new EntryController($parkingService))->handle();
 
-        $plate = $result['plate'];
-        $vehicleType = $result['type'];
+        $plate = $result['plate'] ?? null;
+        $vehicleType = $result['type'] ?? null;
 
         echo "<p>O veículo do tipo <strong>{$vehicleType}</strong> com a placa <strong>{$plate}</strong> teve a entrada registrada.</p>";
     } catch (Exception $exception) {
