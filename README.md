@@ -123,6 +123,15 @@ Execute:
 sqlite3 Infra/Database/parking.db < Infra/Database/migrate.sql
 ```
 
+**Observação**: Caso o comando `sqlite3` não seja reconhecido, siga as instruções abaixo para instalar o SQLite no seu sistema.
+
+#### Instalando o SQLite:
+
+1. Baixe o arquivo **`sqlite-tools-win-x64-3510000.zip`** (para sistemas Windows 64-bit) [aqui](https://www.sqlite.org/download.html).
+2. Extraia o arquivo em uma pasta de sua escolha, como por exemplo `C:\sqlite`.
+3. Adicione a pasta `C:\sqlite` ao seu PATH do sistema.
+4. Verifique se a instalação foi concluída com sucesso executando o comando: sqlite3 --version
+
 ---
 
 ## Como Executar o Projeto
@@ -133,15 +142,28 @@ composer install
 ```
 
 ### 2. Executar o servidor PHP
+Inicie o servidor PHP local com o seguinte comando (substitua o caminho conforme necessário):
 ```
-php -S localhost:8080
+php -S localhost:8080 -t C:\xampp\htdocs\Controle-de-Estacionamento-main
 ```
 
 ### 3. Acessar no navegador
+Abra o navegador e acesse a URL abaixo para ver o projeto:
+
 ```
 http://localhost:8080/index.php
 ```
+---
 
+## Possíveis erros comuns
+
+### 1. **Erro: "sqlite3 não é reconhecido como um comando interno ou externo"**
+- Isso ocorre quando o SQLite não está instalado corretamente ou não foi adicionado ao PATH do sistema. Verifique as instruções de instalação do SQLite na seção acima.
+
+### 2. **Erro de porta já em uso**
+- Caso o servidor não consiga iniciar devido à porta `8080` já estar em uso, tente usar outra porta, por exemplo `8081`:
+  ```bash
+  php -S localhost:8081 -t C:\xampp\htdocs\Controle-de-Estacionamento-main
 ---
 
 ## Uso do Sistema
@@ -176,3 +198,12 @@ Exibe:
 
 O sistema foi desenvolvido seguindo boas práticas de programação e organização arquitetural, garantindo clareza, modularidade e possibilidade de manutenção futura.  
 O foco deste projeto é aplicar de forma correta os princípios fundamentais de engenharia de software, atendendo às exigências acadêmicas e simulando um ambiente real de desenvolvimento.
+
+---
+
+# Fotos do Sistema
+V1:
+<img width="923" height="874" alt="image" src="https://github.com/user-attachments/assets/cda83da8-a653-40ed-a5ca-63f2df51793b" />
+V2:
+
+
