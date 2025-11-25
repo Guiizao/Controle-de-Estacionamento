@@ -203,7 +203,7 @@ O foco deste projeto é aplicar de forma correta os princípios fundamentais de 
 
 # Fotos do Sistema
 V1:
-<img width="923" height="874" alt="image" src="https://github.com/user-attachments/assets/cda83da8-a653-40ed-a5ca-63f2df51793b" />
-V2:
+<img width="694" height="326" alt="image" src="https://github.com/user-attachments/assets/68ff8a35-51f4-4f92-9400-2abb51d6696c" />
+
 
 
