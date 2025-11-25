@@ -203,7 +203,7 @@ O foco deste projeto é aplicar de forma correta os princípios fundamentais de 
 
 # Fotos do Sistema
 V1:
-<img width="694" height="326" alt="image" src="https://github.com/user-attachments/assets/68ff8a35-51f4-4f92-9400-2abb51d6696c" />
 
+![WhatsApp Image 2025-11-24 at 21 34 11](https://github.com/user-attachments/assets/ffdcd58c-605f-469c-bbba-03348dd701fd)
 
 
